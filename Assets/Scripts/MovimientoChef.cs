@@ -15,12 +15,20 @@ public class MovimientoChef : MonoBehaviour
     }
 
     void Update()
+{
+    movimientoX = Input.GetAxisRaw("Horizontal");
+
+    animator.SetBool("Caminando", movimientoX != 0);
+
+    if (movimientoX > 0)
     {
-        movimientoX = Input.GetAxisRaw("Horizontal");
-
-        animator.SetBool("Caminando", movimientoX != 0);
+        transform.localScale = new Vector3(-1, 1, 1);
     }
-
+    else if (movimientoX < 0)
+    {
+        transform.localScale = new Vector3(1, 1, 1);
+    }
+}
     void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(movimientoX * velocidad, rb.linearVelocity.y);
