@@ -8,6 +8,7 @@ public class MovimientoChef : MonoBehaviour
     private Animator animator;
     public float fuerzaSalto = 8f;
     private bool enSuelo = true;
+public float velocidadRapida = 7f;
 
     void Start()
     {
@@ -36,9 +37,15 @@ public class MovimientoChef : MonoBehaviour
 }
 }
     void FixedUpdate()
-    {
-        rb.linearVelocity = new Vector2(movimientoX * velocidad, rb.linearVelocity.y);
-    }
+{
+    float velocidadActual = Input.GetKey(KeyCode.LeftShift) ? velocidadRapida : velocidad;
+
+    rb.linearVelocity = new Vector2(
+        movimientoX * velocidadActual,
+        rb.linearVelocity.y
+    );
+}
+
     void OnCollisionEnter2D(Collision2D collision)
 {
     if (collision.gameObject.name == "Suelo")
