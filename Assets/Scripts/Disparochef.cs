@@ -5,14 +5,21 @@ public class DisparoChef : MonoBehaviour
     public GameObject proyectil;
     public Transform puntoDisparo;
     public float velocidadDisparo = 8f;
+    private Animator animator;
+
+    void Start()
+{
+    animator = GetComponent<Animator>();
+}
 
     void Update()
+{
+    if (Input.GetKeyDown(KeyCode.Space))
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Disparar();
-        }
+        animator.SetTrigger("Disparar");
+        Disparar();
     }
+}
 
     void Disparar()
 {
